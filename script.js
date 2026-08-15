@@ -5,3 +5,9 @@ for (let i = 1; i <= 256; i++) {
     box.classList.add('box');
     container.appendChild(box);
 }
+
+container.addEventListener('mouseover', (e) => {
+    if (e.target.classList.contains('box')) {
+        e.target.style.backgroundColor = '#000';
+    }
+});
