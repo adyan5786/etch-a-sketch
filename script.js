@@ -1,13 +1,36 @@
 const container = document.querySelector(".container");
+const button = document.querySelector("#squares");
 
-for (let i = 1; i <= 256; i++) {
-    let box = document.createElement('div');
-    box.classList.add('box');
-    container.appendChild(box);
+function addBoxes(squares) {
+    container.replaceChildren();
+    const totalSquares = squares * squares
+    for (let i = 1; i <= totalSquares; i++) {
+        let box = document.createElement('div');
+        box.classList.add('box');
+        container.appendChild(box);
+    }
+
+    container.style.width = `${squares * 10}px`;
 }
+addBoxes(16);
 
 container.addEventListener('mouseover', (e) => {
     if (e.target.classList.contains('box')) {
         e.target.style.backgroundColor = '#000';
     }
 });
+
+button.addEventListener('click', () => {
+    let input = prompt("Size of Grid? (Ex: '16' for 16x16)");
+    let squares = parseInt(input);
+
+    if (input === null || input === "") {
+        return;
+    }
+
+    if (0 < squares && squares <= 100) {
+        addBoxes(squares);
+    } else {
+        alert("Please enter valid number between 1 and 100");
+    }
+})
