@@ -1,5 +1,6 @@
 const container = document.querySelector(".container");
 const button = document.querySelector("#squares");
+const clear = document.querySelector("#clear");
 
 function addBoxes(squares) {
     container.replaceChildren();
@@ -12,7 +13,7 @@ function addBoxes(squares) {
 
     container.style.width = `${squares * 10}px`;
 }
-addBoxes(16);
+addBoxes(50);
 
 container.addEventListener('mouseover', (e) => {
     if (e.target.classList.contains('box')) {
@@ -34,4 +35,10 @@ button.addEventListener('click', () => {
     } else {
         alert("Please enter valid number between 1 and 100");
     }
+})
+
+clear.addEventListener('click', () => {
+    const squares = Math.sqrt(container.childElementCount);
+    container.replaceChildren();
+    addBoxes(squares);
 })
